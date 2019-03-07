@@ -10,8 +10,12 @@ variable "vpc_cidr_block" {
   description = "vpc cidr block"
 }
 
-variable "subnet_public" {
-  description = "public subnet"
+variable "subnet_public_a" {
+  description = "public subnet A"
+}
+
+variable "subnet_public_b" {
+  description = "public subnet B"
 }
 
 variable "subnet_private" {

@@ -54,7 +54,7 @@ resource "aws_autoscaling_group" "web" {
   name                 = "asg_web-${var.env}"
   launch_configuration = "${aws_launch_configuration.web.id}"
   availability_zones   = ["${data.aws_availability_zones.available.names}"]
-  vpc_zone_identifier  = ["${data.terraform_remote_state.base.subnet_public_id}"]
+  vpc_zone_identifier  = ["${data.terraform_remote_state.base.subnet_public_a_id}", "${data.terraform_remote_state.base.subnet_public_b_id}"]
   min_size             = 1
   max_size             = 1
 

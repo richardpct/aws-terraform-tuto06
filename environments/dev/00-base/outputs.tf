@@ -2,8 +2,12 @@ output "vpc_id" {
   value = "${module.base.vpc_id}"
 }
 
-output "subnet_public_id" {
-  value = "${module.base.subnet_public_id}"
+output "subnet_public_a_id" {
+  value = "${module.base.subnet_public_a_id}"
+}
+
+output "subnet_public_b_id" {
+  value = "${module.base.subnet_public_b_id}"
 }
 
 output "subnet_private_id" {
