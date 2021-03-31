@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Launch this script for initializing the backend s3
+# Launch this script for initializing the S3 backend
 #
 
 terraform init \
