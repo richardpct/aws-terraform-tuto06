@@ -17,8 +17,7 @@ import redis
 
 r = redis.Redis(
                 host='${database_host}',
-                port=6379,
-                password='${database_pass}')
+                port=6379)
 r.set('count', 0)
 count = r.incr(1)
 

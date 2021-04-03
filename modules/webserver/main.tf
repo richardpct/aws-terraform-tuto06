@@ -30,7 +30,7 @@ data "template_file" "user_data" {
   vars = {
     eip_web_id    = data.terraform_remote_state.base.outputs.aws_eip_web_id
     environment   = var.env
-    database_host = data.terraform_remote_state.database.outputs.database_private_ip
+    database_host = data.terraform_remote_state.database.outputs.database_arn
     database_pass = var.database_pass
   }
 }

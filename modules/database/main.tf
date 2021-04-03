@@ -12,23 +12,19 @@ data "terraform_remote_state" "base" {
   }
 }
 
-data "template_file" "user_data" {
-  template = file("${path.module}/user-data.sh")
-
-  vars = {
-    database_pass = var.database_pass
-  }
+resource "aws_elasticache_subnet_group" "redis" {
+  name       = "redis-${var.env}"
+  subnet_ids = [data.terraform_remote_state.base.outputs.subnet_private_id]
 }
 
-resource "aws_instance" "database" {
-  ami                    = var.image_id
-  user_data              = data.template_file.user_data.rendered
-  instance_type          = var.instance_type
-  key_name               = data.terraform_remote_state.base.outputs.ssh_key
-  subnet_id              = data.terraform_remote_state.base.outputs.subnet_private_id
-  vpc_security_group_ids = [data.terraform_remote_state.base.outputs.sg_database_id]
-
-  tags = {
-    Name = "database_server-${var.env}"
-  }
+resource "aws_elasticache_cluster" "redis" {
+  cluster_id           = "cluster-redis"
+  engine               = "redis"
+  node_type            = "cache.t2.micro"
+  num_cache_nodes      = 1
+  parameter_group_name = "default.redis6.x"
+  engine_version       = "6.x"
+  port                 = 6379
+  subnet_group_name    = aws_elasticache_subnet_group.redis.name
+  security_group_ids   = [data.terraform_remote_state.base.outputs.sg_database_id]
 }
