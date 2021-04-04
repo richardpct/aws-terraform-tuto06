@@ -1,5 +1,5 @@
 resource "aws_iam_role" "role" {
-  name = "role"
+  name = "my_role"
 
   assume_role_policy = <<EOF
 {
@@ -18,7 +18,7 @@ EOF
 }
 
 resource "aws_iam_policy" "policy" {
-  name = "policy"
+  name = "my_policy"
 
   policy = <<EOF
 {

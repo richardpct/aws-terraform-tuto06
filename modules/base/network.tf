@@ -16,23 +16,43 @@ resource "aws_internet_gateway" "my_igw" {
   }
 }
 
-resource "aws_subnet" "public_a" {
+resource "aws_subnet" "public_bastion_a" {
   vpc_id            = aws_vpc.my_vpc.id
-  cidr_block        = var.subnet_public_a
+  cidr_block        = var.subnet_public_bastion_a
   availability_zone = data.aws_availability_zones.available.names[0]
 
   tags = {
-    Name = "subnet_public_a-${var.env}"
+    Name = "subnet_public_bastion_a-${var.env}"
   }
 }
 
-resource "aws_subnet" "public_b" {
+resource "aws_subnet" "public_bastion_b" {
   vpc_id            = aws_vpc.my_vpc.id
-  cidr_block        = var.subnet_public_b
+  cidr_block        = var.subnet_public_bastion_b
   availability_zone = data.aws_availability_zones.available.names[1]
 
   tags = {
-    Name = "subnet_public_b-${var.env}"
+    Name = "subnet_public_bastion_b-${var.env}"
+  }
+}
+
+resource "aws_subnet" "public_web_a" {
+  vpc_id            = aws_vpc.my_vpc.id
+  cidr_block        = var.subnet_public_web_a
+  availability_zone = data.aws_availability_zones.available.names[0]
+
+  tags = {
+    Name = "subnet_public_web_a-${var.env}"
+  }
+}
+
+resource "aws_subnet" "public_web_b" {
+  vpc_id            = aws_vpc.my_vpc.id
+  cidr_block        = var.subnet_public_web_b
+  availability_zone = data.aws_availability_zones.available.names[1]
+
+  tags = {
+    Name = "subnet_public_web_b-${var.env}"
   }
 }
 
@@ -58,13 +78,23 @@ resource "aws_route_table" "route" {
   }
 }
 
-resource "aws_route_table_association" "public_a" {
-  subnet_id      = aws_subnet.public_a.id
+resource "aws_route_table_association" "public_bastion_a" {
+  subnet_id      = aws_subnet.public_bastion_a.id
   route_table_id = aws_route_table.route.id
 }
 
-resource "aws_route_table_association" "public_b" {
-  subnet_id      = aws_subnet.public_b.id
+resource "aws_route_table_association" "public_bastion_b" {
+  subnet_id      = aws_subnet.public_bastion_b.id
+  route_table_id = aws_route_table.route.id
+}
+
+resource "aws_route_table_association" "public_web_a" {
+  subnet_id      = aws_subnet.public_web_a.id
+  route_table_id = aws_route_table.route.id
+}
+
+resource "aws_route_table_association" "public_web_b" {
+  subnet_id      = aws_subnet.public_web_b.id
   route_table_id = aws_route_table.route.id
 }
 

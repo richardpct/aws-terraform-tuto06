@@ -1,3 +1,12 @@
+locals {
+  ssh_port       = 22
+  http_port      = 80
+  https_port     = 443
+  redis_port     = 6379
+  webserver_port = 8000
+  anywhere       = ["0.0.0.0/0"]
+}
+
 variable "region" {
   description = "region"
 }
@@ -10,12 +19,20 @@ variable "vpc_cidr_block" {
   description = "vpc cidr block"
 }
 
-variable "subnet_public_a" {
-  description = "public subnet A"
+variable "subnet_public_bastion_a" {
+  description = "public subnet bastion A"
 }
 
-variable "subnet_public_b" {
-  description = "public subnet B"
+variable "subnet_public_bastion_b" {
+  description = "public subnet bastion B"
+}
+
+variable "subnet_public_web_a" {
+  description = "public subnet web A"
+}
+
+variable "subnet_public_web_b" {
+  description = "public subnet web B"
 }
 
 variable "subnet_private" {

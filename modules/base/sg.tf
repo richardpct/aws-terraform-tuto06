@@ -10,8 +10,8 @@ resource "aws_security_group" "bastion" {
 
 resource "aws_security_group_rule" "bastion_inbound_ssh" {
   type              = "ingress"
-  from_port         = 22
-  to_port           = 22
+  from_port         = local.ssh_port
+  to_port           = local.ssh_port
   protocol          = "tcp"
   cidr_blocks       = [var.cidr_allowed_ssh]
   security_group_id = aws_security_group.bastion.id
@@ -19,28 +19,28 @@ resource "aws_security_group_rule" "bastion_inbound_ssh" {
 
 resource "aws_security_group_rule" "bastion_outbound_ssh" {
   type              = "egress"
-  from_port         = 22
-  to_port           = 22
+  from_port         = local.ssh_port
+  to_port           = local.ssh_port
   protocol          = "tcp"
-  cidr_blocks       = ["0.0.0.0/0"]
+  cidr_blocks       = local.anywhere
   security_group_id = aws_security_group.bastion.id
 }
 
 resource "aws_security_group_rule" "bastion_outbound_http" {
   type              = "egress"
-  from_port         = 80
-  to_port           = 80
+  from_port         = local.http_port
+  to_port           = local.http_port
   protocol          = "tcp"
-  cidr_blocks       = ["0.0.0.0/0"]
+  cidr_blocks       = local.anywhere
   security_group_id = aws_security_group.bastion.id
 }
 
 resource "aws_security_group_rule" "bastion_outbound_https" {
   type              = "egress"
-  from_port         = 443
-  to_port           = 443
+  from_port         = local.https_port
+  to_port           = local.https_port
   protocol          = "tcp"
-  cidr_blocks       = ["0.0.0.0/0"]
+  cidr_blocks       = local.anywhere
   security_group_id = aws_security_group.bastion.id
 }
 
@@ -56,8 +56,8 @@ resource "aws_security_group" "database" {
 
 resource "aws_security_group_rule" "database_inbound_redis" {
   type                     = "ingress"
-  from_port                = 6379
-  to_port                  = 6379
+  from_port                = local.redis_port
+  to_port                  = local.redis_port
   protocol                 = "tcp"
   source_security_group_id = aws_security_group.webserver.id
   security_group_id        = aws_security_group.database.id
@@ -75,8 +75,8 @@ resource "aws_security_group" "webserver" {
 
 resource "aws_security_group_rule" "webserver_inbound_ssh" {
   type                     = "ingress"
-  from_port                = 22
-  to_port                  = 22
+  from_port                = local.ssh_port
+  to_port                  = local.ssh_port
   protocol                 = "tcp"
   source_security_group_id = aws_security_group.bastion.id
   security_group_id        = aws_security_group.webserver.id
@@ -84,35 +84,35 @@ resource "aws_security_group_rule" "webserver_inbound_ssh" {
 
 resource "aws_security_group_rule" "webserver_inbound_http" {
   type              = "ingress"
-  from_port         = 8000
-  to_port           = 8000
+  from_port         = local.webserver_port
+  to_port           = local.webserver_port
   protocol          = "tcp"
-  cidr_blocks       = ["0.0.0.0/0"]
+  cidr_blocks       = local.anywhere
   security_group_id = aws_security_group.webserver.id
 }
 
 resource "aws_security_group_rule" "webserver_outbound_http" {
   type              = "egress"
-  from_port         = 80
-  to_port           = 80
+  from_port         = local.http_port
+  to_port           = local.http_port
   protocol          = "tcp"
-  cidr_blocks       = ["0.0.0.0/0"]
+  cidr_blocks       = local.anywhere
   security_group_id = aws_security_group.webserver.id
 }
 
 resource "aws_security_group_rule" "webserver_outbound_https" {
   type              = "egress"
-  from_port         = 443
-  to_port           = 443
+  from_port         = local.https_port
+  to_port           = local.https_port
   protocol          = "tcp"
-  cidr_blocks       = ["0.0.0.0/0"]
+  cidr_blocks       = local.anywhere
   security_group_id = aws_security_group.webserver.id
 }
 
 resource "aws_security_group_rule" "webserver_outbound_redis" {
   type                     = "egress"
-  from_port                = 6379
-  to_port                  = 6379
+  from_port                = local.redis_port
+  to_port                  = local.redis_port
   protocol                 = "tcp"
   source_security_group_id = aws_security_group.database.id
   security_group_id        = aws_security_group.webserver.id

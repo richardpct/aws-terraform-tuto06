@@ -31,7 +31,6 @@ data "template_file" "user_data" {
     eip_web_id    = data.terraform_remote_state.base.outputs.aws_eip_web_id
     environment   = var.env
     database_host = data.terraform_remote_state.database.outputs.database_arn
-    database_pass = var.database_pass
   }
 }
 
@@ -53,8 +52,7 @@ resource "aws_launch_configuration" "web" {
 resource "aws_autoscaling_group" "web" {
   name                 = "asg_web-${var.env}"
   launch_configuration = aws_launch_configuration.web.id
-#  availability_zones   = ["${data.aws_availability_zones.available.names}"]
-  vpc_zone_identifier  = [data.terraform_remote_state.base.outputs.subnet_public_a_id, data.terraform_remote_state.base.outputs.subnet_public_b_id]
+  vpc_zone_identifier  = [data.terraform_remote_state.base.outputs.subnet_public_web_a_id, data.terraform_remote_state.base.outputs.subnet_public_web_b_id]
   min_size             = 1
   max_size             = 1
 

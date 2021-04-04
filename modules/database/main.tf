@@ -13,14 +13,14 @@ data "terraform_remote_state" "base" {
 }
 
 resource "aws_elasticache_subnet_group" "redis" {
-  name       = "redis-${var.env}"
+  name       = "subnet-redis-${var.env}"
   subnet_ids = [data.terraform_remote_state.base.outputs.subnet_private_id]
 }
 
 resource "aws_elasticache_cluster" "redis" {
   cluster_id           = "cluster-redis"
   engine               = "redis"
-  node_type            = "cache.t2.micro"
+  node_type            = var.instance_type
   num_cache_nodes      = 1
   parameter_group_name = "default.redis6.x"
   engine_version       = "6.x"
