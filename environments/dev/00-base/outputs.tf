@@ -18,8 +18,12 @@ output "subnet_public_web_b_id" {
   value = module.base.subnet_public_web_b_id
 }
 
-output "subnet_private_id" {
-  value = module.base.subnet_private_id
+output "subnet_private_redis_a_id" {
+  value = module.base.subnet_private_redis_a_id
+}
+
+output "subnet_private_redis_b_id" {
+  value = module.base.subnet_private_redis_b_id
 }
 
 output "sg_bastion_id" {

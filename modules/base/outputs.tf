@@ -18,8 +18,12 @@ output "subnet_public_web_b_id" {
   value = aws_subnet.public_web_b.id
 }
 
-output "subnet_private_id" {
-  value = aws_subnet.private.id
+output "subnet_private_redis_a_id" {
+  value = aws_subnet.private_redis_a.id
+}
+
+output "subnet_private_redis_b_id" {
+  value = aws_subnet.private_redis_b.id
 }
 
 output "sg_bastion_id" {

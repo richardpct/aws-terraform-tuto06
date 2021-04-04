@@ -35,8 +35,12 @@ variable "subnet_public_web_b" {
   description = "public subnet web B"
 }
 
-variable "subnet_private" {
-  description = "private subnet"
+variable "subnet_private_redis_a" {
+  description = "private subnet redis A"
+}
+
+variable "subnet_private_redis_b" {
+  description = "private subnet redis B"
 }
 
 variable "cidr_allowed_ssh" {

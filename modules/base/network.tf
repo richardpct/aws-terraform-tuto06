@@ -56,12 +56,23 @@ resource "aws_subnet" "public_web_b" {
   }
 }
 
-resource "aws_subnet" "private" {
-  vpc_id     = aws_vpc.my_vpc.id
-  cidr_block = var.subnet_private
+resource "aws_subnet" "private_redis_a" {
+  vpc_id            = aws_vpc.my_vpc.id
+  cidr_block        = var.subnet_private_redis_a
+  availability_zone = data.aws_availability_zones.available.names[0]
 
   tags = {
-    Name = "subnet_private-${var.env}"
+    Name = "subnet_private_redis_a-${var.env}"
+  }
+}
+
+resource "aws_subnet" "private_redis_b" {
+  vpc_id            = aws_vpc.my_vpc.id
+  cidr_block        = var.subnet_private_redis_b
+  availability_zone = data.aws_availability_zones.available.names[1]
+
+  tags = {
+    Name = "subnet_private_redis_b-${var.env}"
   }
 }
 
