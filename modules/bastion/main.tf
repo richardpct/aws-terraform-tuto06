@@ -52,7 +52,7 @@ resource "aws_launch_template" "bastion" {
 
 resource "aws_autoscaling_group" "bastion" {
   name                 = "asg_bastion-${var.env}"
-  vpc_zone_identifier  = [data.terraform_remote_state.network.outputs.subnet_public_bastion_a_id, data.terraform_remote_state.network.outputs.subnet_public_bastion_b_id]
+  vpc_zone_identifier  = data.terraform_remote_state.network.outputs.subnet_public_bastion_id[*]
   min_size             = 1
   max_size             = 1
 

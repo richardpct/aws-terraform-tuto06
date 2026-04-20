@@ -8,49 +8,46 @@ locals {
 }
 
 variable "aws_profile" {
+  type        = string
   description = "aws profile"
 }
 
 variable "region" {
+  type        = string
   description = "region"
 }
 
 variable "env" {
+  type        = string
   description = "environment"
 }
 
 variable "vpc_cidr_block" {
+  type        = string
   description = "vpc cidr block"
 }
 
-variable "subnet_public_bastion_a" {
-  description = "public subnet bastion A"
+variable "subnet_public_bastion" {
+  type        = list(string)
+  description = "public subnet bastion"
 }
 
-variable "subnet_public_bastion_b" {
-  description = "public subnet bastion B"
+variable "subnet_public_web" {
+  type        = list(string)
+  description = "public subnet web"
 }
 
-variable "subnet_public_web_a" {
-  description = "public subnet web A"
-}
-
-variable "subnet_public_web_b" {
-  description = "public subnet web B"
-}
-
-variable "subnet_private_redis_a" {
-  description = "private subnet redis A"
-}
-
-variable "subnet_private_redis_b" {
-  description = "private subnet redis B"
+variable "subnet_private_redis" {
+  type        = list(string)
+  description = "private subnet redis"
 }
 
 variable "cidr_allowed_ssh" {
+  type        = string
   description = "cidr block allowed to connect via SSH"
 }
 
 variable "ssh_public_key" {
+  type        = string
   description = "ssh public key"
 }

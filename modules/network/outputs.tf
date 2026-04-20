@@ -2,28 +2,16 @@ output "vpc_id" {
   value = aws_vpc.my_vpc.id
 }
 
-output "subnet_public_bastion_a_id" {
-  value = aws_subnet.public_bastion_a.id
+output "subnet_public_bastion_id" {
+  value = aws_subnet.public_bastion[*].id
 }
 
-output "subnet_public_bastion_b_id" {
-  value = aws_subnet.public_bastion_b.id
+output "subnet_public_web_id" {
+  value = aws_subnet.public_web[*].id
 }
 
-output "subnet_public_web_a_id" {
-  value = aws_subnet.public_web_a.id
-}
-
-output "subnet_public_web_b_id" {
-  value = aws_subnet.public_web_b.id
-}
-
-output "subnet_private_redis_a_id" {
-  value = aws_subnet.private_redis_a.id
-}
-
-output "subnet_private_redis_b_id" {
-  value = aws_subnet.private_redis_b.id
+output "subnet_private_redis_id" {
+  value = aws_subnet.private_redis[*].id
 }
 
 output "sg_bastion_id" {
