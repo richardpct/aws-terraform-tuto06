@@ -1,13 +1,9 @@
-terraform {
-  backend "s3" {}
-}
-
 module "database" {
-  source = "../../../modules/database"
-
-  region                   = "eu-west-3"
-  env                      = "dev"
-  base_remote_state_bucket = var.bucket
-  base_remote_state_key    = var.dev_base_key
-  instance_type            = "cache.t2.micro"
+  source                      = "../../../modules/database"
+  aws_profile                 = var.aws_profile
+  region                      = var.region
+  env                         = "dev"
+  network_remote_state_bucket = var.bucket
+  network_remote_state_key    = var.key_network
+  instance_type               = "cache.t4g.micro"
 }
