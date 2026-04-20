@@ -110,7 +110,7 @@ resource "aws_route_table_association" "public_web_b" {
 }
 
 resource "aws_eip" "bastion" {
-  vpc = true
+  domain = "vpc"
 
   tags = {
     Name = "eip_bastion-${var.env}"
@@ -118,7 +118,7 @@ resource "aws_eip" "bastion" {
 }
 
 resource "aws_eip" "web" {
-  vpc = true
+  domain = "vpc"
 
   tags = {
     Name = "eip_web-${var.env}"

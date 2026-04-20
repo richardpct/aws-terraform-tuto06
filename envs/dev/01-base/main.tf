@@ -1,11 +1,7 @@
-terraform {
-  backend "s3" {}
-}
-
 module "base" {
-  source = "../../../modules/base"
-
-  region                  = "eu-west-3"
+  source                  = "../../../modules/base"
+  aws_profile             = var.aws_profile
+  region                  = var.region
   env                     = "dev"
   vpc_cidr_block          = "10.0.0.0/16"
   subnet_public_bastion_a = "10.0.0.0/24"

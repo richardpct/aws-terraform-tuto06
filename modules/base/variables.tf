@@ -7,6 +7,10 @@ locals {
   anywhere       = ["0.0.0.0/0"]
 }
 
+variable "aws_profile" {
+  description = "aws profile"
+}
+
 variable "region" {
   description = "region"
 }
