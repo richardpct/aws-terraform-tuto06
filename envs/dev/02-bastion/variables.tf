@@ -10,8 +10,8 @@ variable "bucket" {
   description = "bucket where OpenTofu states are stored"
 }
 
-variable "key_base" {
-  description = "key base"
+variable "key_network" {
+  description = "key network"
 }
 
 variable "key_bastion" {

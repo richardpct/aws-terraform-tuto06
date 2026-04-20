@@ -6,8 +6,8 @@ variable "region" {
   description = "region"
 }
 
-variable "key_base" {
-  description = "key base"
+variable "key_network" {
+  description = "key network"
 }
 
 variable "bucket" {

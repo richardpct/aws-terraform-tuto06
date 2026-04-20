@@ -10,12 +10,12 @@ variable "env" {
   description = "environment"
 }
 
-variable "base_remote_state_bucket" {
+variable "network_remote_state_bucket" {
   description = "bucket"
 }
 
-variable "base_remote_state_key" {
-  description = "base key"
+variable "network_remote_state_key" {
+  description = "network key"
 }
 
 variable "instance_type" {
