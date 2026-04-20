@@ -1,31 +1,38 @@
+variable "aws_profile" {
+  description = "aws profile"
+}
+
 variable "region" {
+  type        = string
   description = "region"
 }
 
 variable "env" {
+  type        = string
   description = "environment"
 }
 
-variable "base_remote_state_bucket" {
+variable "network_remote_state_bucket" {
+  type        = string
   description = "bucket"
 }
 
-variable "base_remote_state_key" {
+variable "network_remote_state_key" {
+  type        = string
   description = "base key"
 }
 
 variable "database_remote_state_bucket" {
+  type        = string
   description = "bucket"
 }
 
 variable "database_remote_state_key" {
+  type        = string
   description = "database key"
 }
 
-variable "image_id" {
-  description = "image id"
-}
-
 variable "instance_type" {
+  type        = string
   description = "instance type"
 }

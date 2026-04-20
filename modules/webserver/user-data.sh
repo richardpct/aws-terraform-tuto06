@@ -1,12 +1,13 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
 sudo yum -y update
 sudo yum -y upgrade
-INSTANCE_ID="$(curl -s http://169.254.169.254/latest/meta-data/instance-id)"
+TOKEN=$(curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
+INSTANCE_ID="$(curl -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/instance-id)"
 aws --region eu-west-3 ec2 associate-address --instance-id $INSTANCE_ID --allocation-id ${eip_web_id}
-sudo yum -y install python38
-sudo pip-3.8 install redis
+sudo yum -y install python3-pip
+sudo pip install redis
 sudo useradd www -s /sbin/nologin
 mkdir -p /var/lib/www/cgi-bin
 

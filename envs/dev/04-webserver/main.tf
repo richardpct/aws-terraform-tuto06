@@ -1,16 +1,11 @@
-terraform {
-  backend "s3" {}
-}
-
 module "webserver" {
-  source = "../../../modules/webserver"
-
-  region                       = "eu-west-3"
+  source                       = "../../../modules/webserver"
+  aws_profile                  = var.aws_profile
+  region                       = var.region
   env                          = "dev"
-  base_remote_state_bucket     = var.bucket
-  base_remote_state_key        = var.dev_base_key
+  network_remote_state_bucket  = var.bucket
+  network_remote_state_key     = var.key_network
   database_remote_state_bucket = var.bucket
-  database_remote_state_key    = var.dev_database_key
+  database_remote_state_key    = var.key_database
   instance_type                = "t2.micro"
-  image_id                     = "ami-0ebc281c20e89ba4b"  #Amazon Linux 2018
 }
