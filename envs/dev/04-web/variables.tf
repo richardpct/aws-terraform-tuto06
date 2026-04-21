@@ -23,7 +23,7 @@ variable "key_database" {
   description = "key database"
 }
 
-variable "key_webserver" {
+variable "key_web" {
   type        = string
-  description = "key webserver"
+  description = "key web"
 }

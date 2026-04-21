@@ -49,7 +49,7 @@ resource "aws_launch_template" "web" {
   key_name      = data.terraform_remote_state.network.outputs.ssh_key
 
   network_interfaces {
-    security_groups             = [data.terraform_remote_state.network.outputs.sg_webserver_id]
+    security_groups             = [data.terraform_remote_state.network.outputs.sg_web_id]
     associate_public_ip_address = true
   }
 

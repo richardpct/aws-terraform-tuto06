@@ -22,8 +22,8 @@ output "sg_database_id" {
   value = module.network.sg_database_id
 }
 
-output "sg_webserver_id" {
-  value = module.network.sg_webserver_id
+output "sg_web_id" {
+  value = module.network.sg_web_id
 }
 
 output "aws_eip_bastion_id" {

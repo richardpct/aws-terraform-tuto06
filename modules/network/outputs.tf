@@ -22,8 +22,8 @@ output "sg_database_id" {
   value = aws_security_group.database.id
 }
 
-output "sg_webserver_id" {
-  value = aws_security_group.webserver.id
+output "sg_web_id" {
+  value = aws_security_group.web.id
 }
 
 output "aws_eip_bastion_id" {

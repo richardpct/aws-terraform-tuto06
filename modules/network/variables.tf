@@ -3,7 +3,7 @@ locals {
   http_port      = 80
   https_port     = 443
   redis_port     = 6379
-  webserver_port = 8000
+  web_port       = 8000
   anywhere       = ["0.0.0.0/0"]
 }
 

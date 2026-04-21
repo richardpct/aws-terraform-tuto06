@@ -1,5 +1,5 @@
-module "webserver" {
-  source                       = "../../../modules/webserver"
+module "web" {
+  source                       = "../../../modules/web"
   aws_profile                  = var.aws_profile
   region                       = var.region
   env                          = "dev"
