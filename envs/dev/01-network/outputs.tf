@@ -41,3 +41,11 @@ output "iam_instance_profile_name" {
 output "ssh_key" {
   value = module.network.ssh_key
 }
+
+output "bastion_public_ip" {
+  value = module.network.bastion_public_ip
+}
+
+output "web_public_ip" {
+  value = module.network.web_public_ip
+}
